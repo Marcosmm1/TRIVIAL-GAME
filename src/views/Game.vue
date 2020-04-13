@@ -1,43 +1,38 @@
 <template>
-  <div>
-    {{ questionsData }}
-    <Questions v-on:questions="questions" />
-    <v-col v-for="(item, i) in items" :key="i" cols="12">
-      <v-card :color="item.color" dark>
-        <div class="d-flex flex-no-wrap justify-space-between">
-          <div>
-            <v-card-title class="headline" v-text="item.answer"></v-card-title>
-          </div>
-        </div>
-      </v-card>
-    </v-col>
+  <div class="mx-auto text-align my-10">
+    <h1 class="mb-5">Current Question</h1>
+    <Question v-on:nextquestion="nextQuestion" :question="questionsData[currentQuestion]" />
   </div>
 </template>
 <script>
-import Questions from '@/components/Questions.vue';
+import Question from '../components/Question.vue';
 import ApiService from "../services/TrivialService.js";
 
 export default {
   components: {
-    Questions
+    Question
   },
   data() {
     return {
-      questionsData: [],
-      difficulty: ""
+      questionsData: null,
+      currentQuestion: 0,
+      totalQuestions: null,
+      difficulty: null
     };
   },
-  methods: {
-    questions(questionstoadd) {
-      this.questionsData = questionstoadd;
-    }
+  async created() {
+    this.difficulty = this.$route.params.difficulty;
+    this.questionsData = await ApiService.getQuestions(this.difficulty)
+    this.totalQuestions = this.questionsData.length
   },
-  mounted() {
-      this.difficulty = this.$route.params.difficulty;
-      ApiService.getQuestions(this.difficulty).then(
-      response => (this.questionsData = response))
+  methods: {
+    nextQuestion() {
+      if(this.questionsData === null){
+        this.currentQuestion++
+      } else {
+        return this.currentQuestion++
+      }
+    }
   }
-};
+}
 </script>
-<style lang="scss" scoped>
-</style>

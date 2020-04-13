@@ -1,9 +1,10 @@
 <template>
-  <v-app>
+ <div id="app" class="container">
+    <v-app id="inspire">
  <router-link to="/" class="initial"></router-link>
- <router-view></router-view>
-
+ <router-view />
   </v-app>
+  </div>
 </template>
 
 <script>
@@ -19,7 +20,3 @@ export default {
   }),
 };
 </script>
-
-<style lang="scss" scoped>
-
-</style>

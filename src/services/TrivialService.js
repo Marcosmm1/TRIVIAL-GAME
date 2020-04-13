@@ -10,7 +10,10 @@ const API = axios.create({
 
 export default {
   async getQuestions(difficulty) {
-    const response = await API.get("?amount=20&difficulty=" + difficulty);
+    const response = await API.get("?amount=10&difficulty=" + difficulty);
+    if(response.data.results === null) {
+      return [];
+    }
     return response.data.results;
   },
   async getquestionsByCategory(category) {

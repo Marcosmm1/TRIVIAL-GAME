@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <v-container id="cont">
+<v-row class="mx-auto my-10">
+   <div>
       <h1>Trivia Quizzy</h1>
       <p>Select your difficulty:</p>
       <div>
@@ -8,7 +8,7 @@
       </div>
       <div>
         <v-btn
-          class="button"
+        class="button"
           @click="mediumMode"
           color="warning"
           outlined
@@ -26,12 +26,9 @@
           v-model="difficulty"
         >hard</v-btn>
       </div>
-
-      <v-btn class="start" @click="getQuestions" color="success" x-large block>Start</v-btn>
-      {{ difficulty }}
-      {{ questions }}
-    </v-container>
-  </div>
+      <v-btn class="button" @click="getQuestions" color="success" x-large>Start</v-btn>
+   </div>
+  </v-row>
 </template>
 
 <script>
@@ -62,23 +59,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.home {
-  text-align: center;
-  margin-top: 50px;
-}
+<style scoped>
 .button {
   width: 250px;
   margin: 10px 0px;
-}
-.start {
-  margin-top: 50%;
-}
-#cont {
-  padding: 0px !important;
-  margin: 0px !important;
-}
-h1 {
-  margin-bottom: 25%;
 }
 </style>
