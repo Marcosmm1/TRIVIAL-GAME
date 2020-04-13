@@ -1,6 +1,6 @@
 <template>
   <v-app>
- <router-link to="/home"></router-link>
+ <router-link to="/" class="initial"></router-link>
  <router-view></router-view>
 
   </v-app>
@@ -19,3 +19,7 @@ export default {
   }),
 };
 </script>
+
+<style lang="scss" scoped>
+
+</style>
